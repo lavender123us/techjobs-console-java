@@ -62,9 +62,9 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
-                } else if (!searchField.contains("searchTerm")) {
-                    System.out.println("No results");
+                    printJobs(JobData.findByValue(searchTerm));
+                    //System.out.println("Search all fields not yet implemented.");
+
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -114,26 +114,34 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-//        for (Integer i=0; i<JobData.findAll().size(); i++) {
-//            for (Map.Entry<String, String> entry : JobData.findAll().entrySet()) {
-//                String = entry.getKey().toString();
-//            }
-//        }
+        if (someJobs.size() == 0) {
+            System.out.println("No results");
+            return;
 
-//        for (String key : .keySet()) {
-//          System.out.println(String);
-//        }
-
-        for (Integer j = 0; j < JobData.findAll().size(); j++) {
-            System.out.println("*****");
-            System.out.println("position type: " + JobData.findAll().get(j).get("position type") + "\n" +
-                    "name: " + JobData.findAll().get(j).get("name") + "\n" +
-                    "employer: " + JobData.findAll().get(j).get("employer") + "\n" +
-                    "location: " + JobData.findAll().get(j).get("location") + "\n" +
-                    "core competency: " + JobData.findAll().get(j).get("core competency"));
-            System.out.println("*****\n");
         }
+        for (HashMap<String, String> job : someJobs) {
+            String jobInfo = "\n*****";
+
+            for (Map.Entry<String, String> jobColumn : job.entrySet()) {
+                jobInfo  += (jobColumn.getKey() + " : " + jobColumn.getValue() + "\n");
+            }
+            jobInfo += "*****\n";
+
+        System.out.println(jobInfo);
+
+
+//        for (Integer j = 0; j < JobData.findAll().size(); j++) {
+//            System.out.println("*****");
+//            System.out.println("position type: " + JobData.findAll().get(j).get("position type") + "\n" +
+//                    "name: " + JobData.findAll().get(j).get("name") + "\n" +
+//                    "employer: " + JobData.findAll().get(j).get("employer") + "\n" +
+//                    "location: " + JobData.findAll().get(j).get("location") + "\n" +
+//                    "core competency: " + JobData.findAll().get(j).get("core competency"));
+//            System.out.println("*****\n");
+//        }
         //System.out.println("printJobs is not implemented yet");
+    }
+
     }
 
 }
