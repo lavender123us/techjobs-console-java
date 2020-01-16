@@ -12,6 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ /**
+ * Fetch list of all values from loaded data,
+ * without duplicates, for a given column.
+ *
  * Created by LaunchCode
  */
 public class JobData {
@@ -21,11 +25,7 @@ public class JobData {
 
     private static ArrayList<HashMap<String, String>> allJobs;
 
-    /**
-     * Fetch list of all values from loaded data,
-     * without duplicates, for a given column.
-     *
-     * @param field The column to retrieve values from
+     /* @param field The column to retrieve values from
      * @return List of all of the values of the given field
      */
     public static ArrayList<String> findAll(String field) {
@@ -84,6 +84,23 @@ public class JobData {
         return jobs;
     }
 
+//    public static ArrayList<Hashmap<String, String>> findByValue(String value) {
+//        loadData();
+//
+//        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+//
+//        for (HashMap<String, String> row : allJobs) {
+//
+//            String aValue = row.get(column);
+//
+//            if (aValue.contains(value)) {
+//                jobs.add(row);
+//            }
+//        }
+//
+//        return jobs;
+//    }
+
     /**
      * Read in data from a CSV file and store it in a list
      */
@@ -124,5 +141,4 @@ public class JobData {
             e.printStackTrace();
         }
     }
-
 }

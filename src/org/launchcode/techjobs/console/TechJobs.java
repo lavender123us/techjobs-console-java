@@ -2,6 +2,7 @@ package org.launchcode.techjobs.console;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -11,7 +12,7 @@ public class TechJobs {
 
     private static Scanner in = new Scanner(System.in);
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
 
         // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
@@ -62,10 +63,13 @@ public class TechJobs {
 
                 if (searchField.equals("all")) {
                     System.out.println("Search all fields not yet implemented.");
+                } else if (!searchField.contains("searchTerm")) {
+                    System.out.println("No results");
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
             }
+
         }
     }
 
@@ -103,14 +107,33 @@ public class TechJobs {
                 validChoice = true;
             }
 
-        } while(!validChoice);
+        } while (!validChoice);
 
         return choiceKeys[choiceIdx];
     }
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+//        for (Integer i=0; i<JobData.findAll().size(); i++) {
+//            for (Map.Entry<String, String> entry : JobData.findAll().entrySet()) {
+//                String = entry.getKey().toString();
+//            }
+//        }
 
-        System.out.println("printJobs is not implemented yet");
+//        for (String key : .keySet()) {
+//          System.out.println(String);
+//        }
+
+        for (Integer j = 0; j < JobData.findAll().size(); j++) {
+            System.out.println("*****");
+            System.out.println("position type: " + JobData.findAll().get(j).get("position type") + "\n" +
+                    "name: " + JobData.findAll().get(j).get("name") + "\n" +
+                    "employer: " + JobData.findAll().get(j).get("employer") + "\n" +
+                    "location: " + JobData.findAll().get(j).get("location") + "\n" +
+                    "core competency: " + JobData.findAll().get(j).get("core competency"));
+            System.out.println("*****\n");
+        }
+        //System.out.println("printJobs is not implemented yet");
     }
+
 }
